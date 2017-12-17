@@ -21,6 +21,8 @@ touristSuma <- sqldf("select Month, sum(Count) from touristData group by Month")
 
 View (touristSuma)
 
+###Cambiamos de nombre de mes a numero de mes en el fichero resultante
+
 touristSuma$Month[touristSuma$Month == "janeiro"] <- 1
 touristSuma$Month[touristSuma$Month == "fevereiro"] <- 2
 touristSuma$Month[touristSuma$Month == "abril"] <- 4
@@ -33,5 +35,6 @@ touristSuma$Month[touristSuma$Month == "outubro"] <- 10
 touristSuma$Month[touristSuma$Month == "novembro"] <- 11
 touristSuma$Month[touristSuma$Month == "dezembro"] <- 12
 touristSuma$Month[touristSuma$Month >= "mar"] <- 3
-
+### Dibujamos resultado
 plot(touristSuma[,1],touristSuma[,2],col="blue", lwd=3, xlab="MESES",ylab="Número Visitas")
+write.csv(touristSuma,"Turistas en Brasil por mes.csv")
